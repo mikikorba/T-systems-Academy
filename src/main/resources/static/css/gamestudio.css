@@ -1,0 +1,174 @@
+::-webkit-scrollbar {
+	height: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background: black;
+}
+
+::-webkit-scrollbar-thumb {
+	background: gray;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: gray;
+}
+
+* {
+	box-sizing: border-box;
+	color: white;
+	padding: 0;
+	margin: 0;
+}
+
+.menu1 {
+	background-image:
+		url('http://217.182.218.125/net/KM/img/gamestudio/background2.jpg');
+	height: 50%;
+}
+
+.menuLeft, .menuRight {
+	float: left;
+	width: 20%;
+	text-align: center;
+	padding: 1vw;
+	border-radius: 10px;
+}
+
+.main {
+	float: left;
+	width: 60%;
+	text-align: center;
+	padding: 0 5vw;
+	font-size: 24px;
+	text-shadow: 0 0 3px black, 0 0 10px black;
+}
+
+.copyright {
+	text-align: center;
+	padding: 1px;
+	margin-top: 7px;
+	font-size: 12px;
+}
+
+.textTop {
+	padding: 5px;
+	text-align: center;
+}
+
+body {
+	width: 100%;
+	background: black;
+}
+
+.menuRight, .menuLeft, .main {
+	margin-top: 5vw;
+	margin-bottom: 3vw;
+}
+
+.textTop, .copyright, .menuRight, .menuLeft {
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+@media only screen and (max-width:620px) {
+	/* For mobile phones: */
+	.menuLeft, .main, .menuRight {
+		width: 100%;
+	}
+}
+
+img {
+	transition: transform .5s;
+	border-style: solid;
+	border-width: 1px;
+	border-color: black;
+	-webkit-box-reflect: below 1px
+		-webkit-gradient(linear, left top, left bottom, from(transparent),
+		color-stop(70%, transparent), to(rgba(250, 250, 250, 0.5)));
+	width: 100%;
+}
+
+img:hover {
+	-ms-transform: scale(1.1); /* IE 9 */
+	-webkit-transform: scale(1.1); /* Safari 3-8 */
+	transform: scale(1.1);
+}
+
+p {
+	font-size: 15px;
+}
+
+.col-sm-3>p {
+	margin: 1vw 0;
+	font-size: 15px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-shadow: 0 0 10px black;
+	-webkit-transition: all 3s ease-in-out;
+}
+
+.container {
+	height: 100%;
+	margin-bottom: 2vw;
+	text-align: center;
+}
+
+.button {
+	padding: 1px 2px;
+	margin: 1vw;
+	color: black;
+	text-align: center;
+}
+
+input {
+	width: 85%;
+	color: black;
+}
+
+.col-sm-3>p:hover {
+	text-shadow: 0px 1px black, 0px 2px black, 0px 3px black, 0px 4px red,
+		0px 5px red, 0px 6px red, 0px 7px red, 0px 8px red, 0px 9px red, 0px
+		10px red, 0px 11px red, 0px 12px red, 0px 13px red, 0px 14px red, 0px
+		15px red, 0px 16px red, 0px 17px red, 0px 18px red, 0px 19px red, 0px
+		20px red
+}
+
+.col-sm-3 {
+	padding-right: 5px;
+	padding-left: 5px;
+}
+
+@media screen and (min-width: 575px) {
+	.col-sm-3>p {
+		font-size: 2vw;
+	}
+}
+
+@media screen and (max-width: 574px) {
+	.col-sm-3>p {
+		font-size: 6vw;
+		margin-top: 10vw;
+		padding-bottom: 10px;
+	}
+	table {
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+tbody, th, td  :not(main) {
+	border-style: solid;
+	border-width: 1px;
+	border-color: black;
+}
+
+th, td {
+	text-align: left;
+	padding: 1px 5px;
+}
+
+div.scrollmenu {
+	overflow: auto;
+	white-space: nowrap;
+}

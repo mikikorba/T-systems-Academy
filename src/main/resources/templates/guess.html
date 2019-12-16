@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Puzzle</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<style>
+body {
+	background-color: #24262B;
+	color: magenta;
+}
+
+td:hover {
+	background-color: gray;
+}
+
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+table {
+	border-spacing: 0px;
+	border-collapse: collapse;
+}
+
+a {
+	margin: 0px;
+	padding: 0px;
+	text-decoration: none;
+	color: magenta;
+	cursor: initial;
+}
+a:hover {
+	background-color: gray;
+	color: magenta;
+}
+
+img {
+	margin: 0px;
+	padding: 0px;
+}
+}
+</style>
+</head>
+<body>
+	<h1>Puzzle</h1>
+	
+	<a href="/">-- Back to Menu --</a><br/>
+	<a href="/guess">-- New game --</a><br/>
+	
+
+</div>
+<div th:text="${@puzzleController.message}" />
+<div th:utext="${@puzzleController.htmlField}" />
+</body>
+</html>

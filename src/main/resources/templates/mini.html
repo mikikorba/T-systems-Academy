@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Minesweeper</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+	integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+	crossorigin="anonymous">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="/css/normalize.css" />
+<link rel="stylesheet" href="/css/gamestudio.css" />
+
+</head>
+<body>
+	<div class="textTop">
+		<h1>Game Studio</h1>
+	</div>
+
+	<div class="menu1" style="overflow: auto">
+
+		<div class="menuLeft">
+			<a href="/">-- Back to Menu --</a> <br /> <a href="/mini">-- New
+				game --</a> <br />
+			<div th:if="${not @mainController.logged}">
+				<form action="/login" class="container">
+					<h3>Login</h3>
+
+					<label for="name"> Name </label> <br> <input type="text"
+						placeholder="Enter Name" name="name" required> <br> <label
+						for="pass"> Password </label><br> <input type="password"
+						placeholder="Enter Password" name="pass" required> <br>
+
+					<button type="submit" class="button" value="Login">Login</button>
+				</form>
+			</div>
+
+			<div th:if="${@mainController.logged}">
+				<form action="/logout">
+					<button type="submit" class="button" value="Logout">
+						Logout</button>
+				</form>
+			</div>
+		</div>
+
+		<div class="main">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<!-- tu daj stred -->
+						<span th:if="${@miniController.marking}"><p>MARKING</p>
+							<p>
+								<a href='/mini/change'> <img border="0"
+									src='/images/mini/ON.jpg' width="50" height=auto>
+								</a>
+							</p> </span> <span th:if="${not @miniController.marking}"><p>OPENING</p>
+							<p>
+								<a href='/mini/change'> <img border="0"
+									src='/images/mini/OFF.jpg' width="50" height=auto>
+								</a>
+							</p> </span>
+
+						<!-- <div th:utext="${@miniController.htmlField}" /> -->
+
+						<div th:if="${not @miniController.solved}">
+							<h1>YOU SOLVED MINESWEEPERS</h1>
+						</div>
+						<div th:if="${@miniController.solved}">
+							<div th:utext="${@miniController.htmlField}" />
+
+							<!-- tu daj stred -->
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="menuRight">
+				<h2>Top scores</h2>
+
+				<div class="scrollmenu">
+					<table>
+						<tbody>
+							<tr>
+								<th>Date</th>
+								<th>Game</th>
+								<th>Name</th>
+								<th>Score</th>
+							</tr>
+							<tr>
+								<td>today</td>
+								<td>Minesweeper</td>
+								<td>Santa</td>
+								<td>999</td>
+							</tr>
+							<tr>
+								<td>today</td>
+								<td>Puzzle</td>
+								<td>Santa</td>
+								<td>999</td>
+							</tr>
+							<tr>
+								<td>today</td>
+								<td>GuessNumber</td>
+								<td>Santa</td>
+								<td>999</td>
+							</tr>
+							<tr>
+								<td>today</td>
+								<td>HangMan</td>
+								<td>Santa</td>
+								<td>999</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="copyright">&copy; copyright MichalKorba</div>
+</body>
+</html>

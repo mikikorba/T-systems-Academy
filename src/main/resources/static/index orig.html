@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Gamestudio</title>
+<style>
+body {
+	background-color: #24262B;
+	color: magenta;
+	
+}
+
+a {
+	color: magenta;
+}
+
+
+a:hover {
+	background-color: gray;
+	padding: 2px;
+	color: magenta;
+}
+
+</style>
+</head>
+<body>
+	<h1>Welcome to Game studio!</h1>
+	<a href="/puzzle">Puzzle</a><br />
+	<a href="/mini">Mini</a><br />
+	<a href="/guess">Guess</a><br />
+	<br />
+	<form action="/login">
+		Login:    <input type="text" name="name"/><br/>
+		Password  <input type="password" name="pass"/><br/>
+		<input type="submit" value="Login"/>
+	</form>
+	<form action="/logout">
+		<input type="submit" value="Logout"/>
+	</form>
+	<br />
+</body>
+</html>
