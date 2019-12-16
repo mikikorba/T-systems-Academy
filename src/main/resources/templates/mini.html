@@ -52,6 +52,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-12">
+
 						<!-- tu daj stred -->
 						<span th:if="${@miniController.marking}"><p>MARKING</p>
 							<p>
@@ -64,7 +65,6 @@
 									src='/images/mini/OFF.jpg' width="50" height=auto>
 								</a>
 							</p> </span>
-
 						<!-- <div th:utext="${@miniController.htmlField}" /> -->
 
 						<div th:if="${not @miniController.solved}">
@@ -78,48 +78,48 @@
 					</div>
 				</div>
 			</div>
+		</div>
+		<div class="menuRight">
+			<h2>Top scores</h2>
 
-			<div class="menuRight">
-				<h2>Top scores</h2>
-
-				<div class="scrollmenu">
-					<table>
-						<tbody>
-							<tr>
-								<th>Date</th>
-								<th>Game</th>
-								<th>Name</th>
-								<th>Score</th>
-							</tr>
-							<tr>
-								<td>today</td>
-								<td>Minesweeper</td>
-								<td>Santa</td>
-								<td>999</td>
-							</tr>
-							<tr>
-								<td>today</td>
-								<td>Puzzle</td>
-								<td>Santa</td>
-								<td>999</td>
-							</tr>
-							<tr>
-								<td>today</td>
-								<td>GuessNumber</td>
-								<td>Santa</td>
-								<td>999</td>
-							</tr>
-							<tr>
-								<td>today</td>
-								<td>HangMan</td>
-								<td>Santa</td>
-								<td>999</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
+			<div class="scrollmenu">
+				<table>
+					<tbody>
+						<tr>
+							<th>Date</th>
+							<th>Game</th>
+							<th>Name</th>
+							<th>Score</th>
+						</tr>
+						<tr>
+							<td>today</td>
+							<td>Minesweeper</td>
+							<td>Santa</td>
+							<td>999</td>
+						</tr>
+						<tr>
+							<td>today</td>
+							<td>Puzzle</td>
+							<td>Santa</td>
+							<td>999</td>
+						</tr>
+						<tr>
+							<td>today</td>
+							<td>GuessNumber</td>
+							<td>Santa</td>
+							<td>999</td>
+						</tr>
+						<tr>
+							<td>today</td>
+							<td>HangMan</td>
+							<td>Santa</td>
+							<td>999</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
-		<div class="copyright">&copy; copyright MichalKorba</div>
+	</div>
+	<div class="copyright">&copy; copyright MichalKorba</div>
 </body>
 </html>
