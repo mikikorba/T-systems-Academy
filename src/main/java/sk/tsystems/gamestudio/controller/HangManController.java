@@ -38,6 +38,8 @@ public class HangManController {
 	private String input;
 	private String hadanyString = namesSK[hadaneCislo];
 	private int health = 5;
+	private boolean check = false;
+	private String[] arrayB = new String[hadanyString.length()];
 
 	@RequestMapping("/hangman")
 	public String getNumber(String input) {
@@ -55,42 +57,27 @@ public class HangManController {
 	public String getMessage() {
 		Formatter f = new Formatter();
 		try {
-		} catch (NumberFormatException e) {
-			return "hangman2" + hadanyString;
-		}
-		if (hadanyString.equals(input)) {
-			return "You Win!!" + hadanyString;
-			
-		} else {
-			for (int j = 0; j < hadanyString.length(); j++) {
-//				if (
-//				hadanyString.charAt(j) == hadanyString.toUpperCase().charAt(0) 
-//				|| 
-//				hadanyString.charAt(j) == input.toLowerCase().charAt(0)) 
-//				{
-//					f.format(input);
-//				} 
-//					else {
-					f.format("-");
-//				}
+			if (hadanyString.equals(input)) {
+				return "You Win!!" + hadanyString;
+
+			} else {
+				if (input!=null && input.length()>0) {
+					for (int j = 0; j < hadanyString.length(); j++) {
+						if (hadanyString.charAt(j) == input.toUpperCase().charAt(0)
+								|| hadanyString.charAt(j) == input.toLowerCase().charAt(0)) {
+							f.format(input);
+						} else {
+							f.format("-");
+						}
+					}
+					f.format("Guess Name or die" + " " + hadanyString);
+					return f.toString();
+				} else
+					return "Guess Name or die";
 			}
-			
-			f.format("Guess Name or die :D"+ " " + hadanyString);
-			return f.toString();
+		} catch (NumberFormatException e) {
+			return "NumberFormatException" + input;
 		}
+
 	}
 }
-
-//for (int j = 0; j < hadanyString.length(); j++) {
-//return "-";
-//}
-//
-//for (int j = 0; j < hadanyString.length(); j++) {
-//if (hadanyString.charAt(j) == input.toUpperCase().charAt(0) || hadanyString.charAt(j) == input.toLowerCase().charAt(0)) {
-//	return "hadanyString.charAt(j)";
-//} else {
-//	return "-";
-//}
-//}
-//return "Nieco";
-//}
