@@ -1,4 +1,4 @@
-package sk.tsystems.gamestudio.game.obesenec;
+package sk.tsystems.gamestudio.game.hangman;
 
 public class Main {
 

@@ -1,29 +1,29 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>GuessTheNumber</title>
+<title>Hang Man</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 </head>
 <body>
-	<h1>GuessTheNumber</h1>
+	<h1>Hang Man</h1>
 
 	<a href="/">-- Back to Menu --</a>
 	<br />
-	<a href="/guess">-- New game --</a>
+	<a href="/hangman/new">-- New game --</a>
 	<br />
 
-	<form action="/guess" metod="get" class="container">
+	<form action="/hangman" metod="get" class="container">
 		<h3>Login</h3>
 
-		<label for="input"> Guess Number </label> <br> 
-		<input type="text" placeholder="Your Number" name="input" autofocus> <br> 
+		<label for="input"> Guess Name </label> <br> 
+		<input type="text" placeholder="Guess Name" name="input" autofocus> <br> 
 
 		<button type="submit" class="button" value="Login">Send</button>
 	</form>
 	</div>
 	
-<div th:text="${@guessNumberController.message}" />
+<div th:text="${@hangManController.message}" />
 
 </body>
 </html>
