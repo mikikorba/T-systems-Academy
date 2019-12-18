@@ -42,10 +42,13 @@ body {
 		</h1>
 	</div>
 		<h3>Scores</h3>
-		<!-- 	<ol>
-		<li th:each="score : ${@hangManController.scores}"><span
-			th:text="${score.username}" /></span> <span th:text="${score.value}" /></span> <span
-			th:text="${score.ident}" /></span> <span th:text="${score.game}" /></span></li>
-	</ol> -->
+		<ol>
+			<li th:each="score : ${@hangManController.scores}">
+				<span th:text="${score.username}" /></span> 
+				<span th:text="${score.value}" /></span> 
+				<span th:text="${score.ident}" /></span> 
+				<span th:text="${score.game}" /></span>
+			</li>
+		</ol>
 </body>
 </html>

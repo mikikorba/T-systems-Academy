@@ -19,13 +19,18 @@ public class HangManController {
 
 	private String input;
 	private HangMan objectWeb;
+	private long startTime;
 
 	@Autowired
 	private ScoreService scoreService;
 	
+	@Autowired
+	private MainController mainController;
+	
 	@RequestMapping("/hangman")
 	public String getNumber(String input) {
 		this.input = input;
+		startTime = System.currentTimeMillis();
 		if (objectWeb == null) {
 			objectWeb = new HangMan();
 		}
@@ -37,6 +42,12 @@ public class HangManController {
 	public String getNewNumber() {
 		objectWeb = new HangMan();
 		input = "";
+		long finalTime = System.currentTimeMillis() - startTime;
+		int finalMiliSecond = (int)finalTime;
+		int score = (300000-finalMiliSecond)/100;
+		if (isSolved() && mainController.isLogged()) {
+			scoreService.addScore(new Score(mainController.getLoggedPlayer().getName(), "hangman", score));
+		}
 		return "hangman";
 	}
 

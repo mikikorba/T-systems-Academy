@@ -71,12 +71,12 @@ img {
 	
 	<h3>Scores</h3>
 	<ol>
-	<li th:each="score : ${@puzzleController.scores}">
-	<span th:text="${score.username}"/></span>
-	<span th:text="${score.value}"/></span>
-	<span th:text="${score.ident}"/></span>
-	<span th:text="${score.game}"/></span>
-	</li>
+		<li th:each="score : ${@puzzleController.scores}">
+			<span th:text="${score.username}"/></span>
+			<span th:text="${score.value}"/></span>
+			<span th:text="${score.ident}"/></span>
+			<span th:text="${score.game}"/></span>
+		</li>
 	</ol>
 
 </body>
