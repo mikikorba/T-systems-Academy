@@ -21,15 +21,31 @@ body {
 	<form action="/hangman" metod="get" class="container">
 		<h3>Login</h3>
 
-		<label for="input"> Guess Name </label> <br> 
-		<input type="text" placeholder="Guess Name" name="input" autofocus> <br> 
+		<label for="input"> Guess Name </label> <br> <input type="text"
+			placeholder="Guess Name" name="input" autofocus> <br>
 
 		<button type="submit" class="button" value="Login">Send</button>
 	</form>
 	</div>
-	
-<h1><div th:text="${@hangManController.message}"/></h1>
-<div th:text="${@hangManController.message2}" />
 
+
+	<div th:if="${@hangManController.solved}">
+		<h1>YOU SOLVED HANGMAN</h1>
+	</div>
+	<div th:if="${not @hangManController.solved}">
+		<h1>
+			<div th:text="${@hangManController.message}" />
+		</h1>
+		<div th:text="${@hangManController.message2}" />
+		<h1>
+			<div th:text="${@hangManController.message3}" />
+		</h1>
+	</div>
+		<h3>Scores</h3>
+		<!-- 	<ol>
+		<li th:each="score : ${@hangManController.scores}"><span
+			th:text="${score.username}" /></span> <span th:text="${score.value}" /></span> <span
+			th:text="${score.ident}" /></span> <span th:text="${score.game}" /></span></li>
+	</ol> -->
 </body>
 </html>

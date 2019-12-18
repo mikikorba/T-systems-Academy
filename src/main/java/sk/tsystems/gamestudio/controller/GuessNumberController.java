@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.WebApplicationContext;
 
+import sk.tsystems.gamestudio.game.guessnumber.GuessNumber;
 import sk.tsystems.gamestudio.game.guessnumber.consoleui.ConsoleUI;
+import sk.tsystems.gamestudio.game.hangman.HangMan;
 
 @Controller
 @Scope(WebApplicationContext.SCOPE_SESSION)
@@ -17,6 +19,7 @@ public class GuessNumberController {
 	private Random rand = new Random();
 	private int hadaneCislo = rand.nextInt(20) + 1;
 	private String input;
+	private GuessNumber objectWeb;
 
 	@RequestMapping("/guess")
 	public String getNumber(String input) {
@@ -38,5 +41,8 @@ public class GuessNumberController {
 		} else {
 			return "WIN !!!";
 		}
+	}
+	public boolean isSolved() {
+		return objectWeb.isSolved();
 	}
 }

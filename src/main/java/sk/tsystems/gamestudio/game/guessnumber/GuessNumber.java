@@ -13,4 +13,8 @@ public class GuessNumber {
 	public static void main(String[] args) {
 		new GuessNumber();
 	}
+	
+	public boolean isSolved() {
+		return true;
+	}
 }

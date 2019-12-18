@@ -14,21 +14,25 @@ import sk.tsystems.gamestudio.game.npuzzle.core.Field;
 import sk.tsystems.gamestudio.game.npuzzle.core.Tile;
 import sk.tsystems.gamestudio.service.ScoreService;
 
+
 @Controller
 @Scope(WebApplicationContext.SCOPE_SESSION)
 public class PuzzleController {
+
 	private Field field;
+	private long startTime;
 	
 	@Autowired
 	private ScoreService scoreService;
-	
+
 	@Autowired
 	private MainController mainController;
 	
 	
 	@RequestMapping("/puzzle")
 	public String index() {
-		field = new Field(4, 4);
+		field = new Field(4, 4);	
+		startTime = System.currentTimeMillis();
 		return "puzzle";
 	}
 	
@@ -36,7 +40,10 @@ public class PuzzleController {
 	public String move(int tile) {
 		field.move(tile);
 		if (field.isSolved() && mainController.isLogged()) {
-			scoreService.addScore(new Score(mainController.getLoggedPlayer().getName(), "puzzle", field.getScore()));
+			long finalTime = System.currentTimeMillis() - startTime;
+			int finalMiliSecond = (int)finalTime;
+			int score = (300000-finalMiliSecond)/100;
+			scoreService.addScore(new Score(mainController.getLoggedPlayer().getName(), "puzzle", score));
 		}
 	
 		return "puzzle";
@@ -75,4 +82,5 @@ public class PuzzleController {
 	public List<Score> getScores(){
 		return scoreService.getTopScores("puzzle");
 	}
+	
 }
