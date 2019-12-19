@@ -16,7 +16,7 @@ public class Comment {
 	public Comment() {
 	}
 
-	public Comment(int ident, String username, String game) {
+	public Comment(int ident, String username, String game, String content) {
 		super();
 		this.ident = ident;
 		this.username = username;

@@ -15,10 +15,10 @@ body {
 
 	<a href="/">-- Back to Menu --</a>
 	<br />
-	<a href="/hangman/new">-- New game --</a>
+	<a href="/hangman">-- New game --</a>
 	<br />
 
-	<form action="/hangman" metod="get" class="container">
+	<form action="/hangman/guess" metod="get" class="container">
 		<h3>Login</h3>
 
 		<label for="input"> Guess Name </label> <br> <input type="text"
@@ -42,13 +42,17 @@ body {
 		</h1>
 	</div>
 		<h3>Scores</h3>
-		<ol>
-			<li th:each="score : ${@hangManController.scores}">
-				<span th:text="${score.username}" /></span> 
-				<span th:text="${score.value}" /></span> 
-				<span th:text="${score.ident}" /></span> 
-				<span th:text="${score.game}" /></span>
-			</li>
-		</ol>
+	<ol>
+		<li th:each="score : ${@hangManController.scores}">
+			 ident:
+			<span th:text="${score.ident}"/></span>
+			 username: 
+			<span th:text="${score.username}"/></span>
+			 value: 
+			<span th:text="${score.value}"/></span>
+			 game: 
+			<span th:text="${score.game}"/></span>
+		</li>
+	</ol>
 </body>
 </html>

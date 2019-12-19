@@ -41,9 +41,15 @@
 			</div>
 
 			<div th:if="${@mainController.logged}">
+				<div><br></div>
+				<span>Hi </span> 
+				<span th:text="${@mainController.loggedPlayer.name}" /> <span>!
+					enjoy the Minesweeper</span>
+				<div><br></div>
+				<div><br></div>
+				<div><br></div>
 				<form action="/logout">
-					<button type="submit" class="button" value="Logout">
-						Logout</button>
+					<button type="submit" class="button" value="Logout">Logout</button>
 				</form>
 			</div>
 		</div>

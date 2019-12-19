@@ -23,7 +23,7 @@
 	</div>
 
 	<div class="menu1" style="overflow: auto">
-	
+
 		<div class="menuLeft">
 			<div th:if="${not @mainController.logged}">
 				<form action="/login" class="container">
@@ -33,15 +33,20 @@
 						placeholder="Enter Name" name="name" required> <br> <label
 						for="pass"> Password </label><br> <input type="password"
 						placeholder="Enter Password" name="pass" required> <br>
-
 					<button type="submit" class="button" value="Login">Login</button>
 				</form>
 			</div>
 
 			<div th:if="${@mainController.logged}">
+				<div><br></div>
+				<span>Hi </span> 
+				<span th:text="${@mainController.loggedPlayer.name}" /> <span>!
+					choose your destiny</span>
+				<div><br></div>
+				<div><br></div>
+				<div><br></div>
 				<form action="/logout">
-					<button type="submit" class="button" value="Logout">
-						Logout</button>
+					<button type="submit" class="button" value="Logout">Logout</button>
 				</form>
 			</div>
 		</div>
@@ -83,7 +88,7 @@
 
 		<div class="menuRight">
 			<h2>Top scores</h2>
-			
+
 			<div class="scrollmenu">
 				<table>
 					<tbody>

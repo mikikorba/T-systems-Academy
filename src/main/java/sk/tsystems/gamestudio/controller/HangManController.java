@@ -23,30 +23,29 @@ public class HangManController {
 
 	@Autowired
 	private ScoreService scoreService;
-	
+
 	@Autowired
 	private MainController mainController;
-	
-	@RequestMapping("/hangman")
-	public String getNumber(String input) {
-		this.input = input;
-		startTime = System.currentTimeMillis();
-		if (objectWeb == null) {
-			objectWeb = new HangMan();
-		}
 
+	@RequestMapping("/hangman")
+	public String getNumber() {
+		objectWeb = new HangMan();
+		startTime = System.currentTimeMillis();
+		input = "";
 		return "hangman";
 	}
 
-	@RequestMapping("/hangman/new")
-	public String getNewNumber() {
-		objectWeb = new HangMan();
-		input = "";
-		long finalTime = System.currentTimeMillis() - startTime;
-		int finalMiliSecond = (int)finalTime;
-		int score = (300000-finalMiliSecond)/100;
-		if (isSolved() && mainController.isLogged()) {
-			scoreService.addScore(new Score(mainController.getLoggedPlayer().getName(), "hangman", score));
+	@RequestMapping("/hangman/guess")
+	public String getNewNumber(String input) {
+
+		if (!isSolved()) {
+			this.input = input;
+			long finalTime = System.currentTimeMillis() - startTime;
+			int finalMiliSecond = (int) finalTime;
+			int score = (300000 - finalMiliSecond) / 100;
+			if (isSolved() && mainController.isLogged()) {
+				scoreService.addScore(new Score(mainController.getLoggedPlayer().getName(), "hangman", score));
+			}
 		}
 		return "hangman";
 	}
@@ -79,14 +78,15 @@ public class HangManController {
 
 	public String getMessage3() {
 		Formatter f = new Formatter();
-		f.format("" + objectWeb.getHealth());
+		f.format("Lives: " + objectWeb.getHealth());
 		return f.toString();
 	}
 
 	public boolean isSolved() {
 		return objectWeb.isSolved();
 	}
-	public List<Score> getScores(){
+
+	public List<Score> getScores() {
 		return scoreService.getTopScores("hangman");
 	}
 

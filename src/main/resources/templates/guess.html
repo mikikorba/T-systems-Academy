@@ -3,7 +3,12 @@
 <head>
 <title>GuessTheNumber</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
+<style>
+body {
+	background-color: black;
+	color: gray;
+}
+</style>
 </head>
 <body>
 	<h1>GuessTheNumber</h1>
@@ -13,17 +18,25 @@
 	<a href="/guess">-- New game --</a>
 	<br />
 
-	<form action="/guess" metod="get" class="container">
-		<h3>Login</h3>
-
-		<label for="input"> Guess Number </label> <br> 
-		<input type="text" placeholder="Your Number" name="input" autofocus> <br> 
-
-		<button type="submit" class="button" value="Login">Send</button>
-	</form>
+	<div th:if="${@guessNumberController.solved}">
+		<h1>YOU SOLVED HANGMAN</h1>
 	</div>
 	
-<div th:text="${@guessNumberController.message}" />
+	<div th:if="${not @guessNumberController.solved}">
+	
+		<form action="/guess/new" metod="get" class="container">
+			<h3>Login</h3>
+	
+			<label for="input"> Guess Number </label> <br> 
+			<input type="text" placeholder="Your Number" name="input" autofocus> <br> 
+	
+			<button type="submit" class="button" value="Login">Send</button>
+		</form>
+		<h1>
+			<div th:text="${@guessNumberController.message}" />
+		</h1>
+  	</div>
+
 
 </body>
 </html>

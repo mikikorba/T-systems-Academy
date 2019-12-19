@@ -5,8 +5,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <style>
 body {
-	background-color: #24262B;
-	color: magenta;
+	background-color: black;
+	color: gray;
 }
 
 td:hover {
@@ -27,14 +27,11 @@ a {
 	margin: 0px;
 	padding: 0px;
 	text-decoration: none;
-	color: magenta;
 	cursor: initial;
-	color: magenta
 }
 
 a:hover {
 	background-color: gray;
-	color: magenta;
 }
 
 img {
@@ -52,6 +49,13 @@ img {
 	</div>
 	
 	<div th:if="${@mainController.logged}">
+	<div><br></div>
+	<span>Hi </span> 
+	<span th:text="${@mainController.loggedPlayer.name}" /> 
+	<span>!	choose your destiny</span>
+	<div><br></div>
+	<div><br></div>
+	<div><br></div>
 	You are logged as <span th:text="${@mainController.loggedPlayer.name}"/span><br/>
 	</div>
 
@@ -72,10 +76,33 @@ img {
 	<h3>Scores</h3>
 	<ol>
 		<li th:each="score : ${@puzzleController.scores}">
-			<span th:text="${score.username}"/></span>
-			<span th:text="${score.value}"/></span>
+			 ident:
 			<span th:text="${score.ident}"/></span>
+			 username: 
+			<span th:text="${score.username}"/></span>
+			 value: 
+			<span th:text="${score.value}"/></span>
+			 game: 
 			<span th:text="${score.game}"/></span>
+		</li>
+	</ol>
+	
+	<form action="" method="post">
+		<div>
+			<textarea name="comments" id="comments">Hey... say something!</textarea>
+		</div>
+	<input type="submit" value="Submit">
+	</form>
+
+	<h3>Comments</h3>
+	<ol>
+		<li th:each="comment : ${@puzzleController.comment}">
+			 username: 
+			<span th:text="${comment.username}"/></span>
+			 value: 
+			<span th:text="${comment.content}"/></span>
+			 game: 
+			<span th:text="${comment.game}"/></span>
 		</li>
 	</ol>
 

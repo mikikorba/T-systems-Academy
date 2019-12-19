@@ -9,9 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.WebApplicationContext;
 
+import sk.tsystems.gamestudio.entity.Comment;
 import sk.tsystems.gamestudio.entity.Score;
 import sk.tsystems.gamestudio.game.npuzzle.core.Field;
 import sk.tsystems.gamestudio.game.npuzzle.core.Tile;
+import sk.tsystems.gamestudio.service.CommentService;
 import sk.tsystems.gamestudio.service.ScoreService;
 
 
@@ -21,9 +23,13 @@ public class PuzzleController {
 
 	private Field field;
 	private long startTime;
+	private String comment;
 	
 	@Autowired
 	private ScoreService scoreService;
+	
+	@Autowired
+	private CommentService commentService;
 
 	@Autowired
 	private MainController mainController;
@@ -46,6 +52,15 @@ public class PuzzleController {
 			scoreService.addScore(new Score(mainController.getLoggedPlayer().getName(), "puzzle", score));
 		}
 	
+		return "puzzle";
+	}
+	
+	@RequestMapping("/puzzle/comment")
+	public String index() {
+		field = new Field(4, 4);	
+		startTime = System.currentTimeMillis();
+		comment = "hala bala";
+		commentService.addComment(new Comment(mainController.getLoggedPlayer().getIdent(), mainController.getLoggedPlayer().getName(), "puzzle", comment));
 		return "puzzle";
 	}
 	
@@ -82,5 +97,7 @@ public class PuzzleController {
 	public List<Score> getScores(){
 		return scoreService.getTopScores("puzzle");
 	}
-	
+	public List<Comment> getComment(){
+		return commentService.getComment("puzzle");
+	}
 }
