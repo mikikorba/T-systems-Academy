@@ -30,7 +30,8 @@ public class RatingServiceJPA implements RatingService {
 
 	@Override
 	public double getAverageRating() {
-		// TODO Auto-generated method stub
-		return 0;
+		Object result = entityManager.createQuery("select r from Rating r where r.username = :username and r.game = :game").getSingleResult();
+		double result2 = (Double)result;
+		return result2;
 	}
 }

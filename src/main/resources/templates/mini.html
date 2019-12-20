@@ -63,12 +63,13 @@
 						<span th:if="${@miniController.marking}"><p>MARKING</p>
 							<p>
 								<a href='/mini/change'> <img border="0"
-									src='/images/mini/ON.jpg' width="50" height=auto>
+									src='/images/mini/ON.jpg' height="50">
 								</a>
-							</p> </span> <span th:if="${not @miniController.marking}"><p>OPENING</p>
+							</p> </span> 
+							<span th:if="${not @miniController.marking}"><p>OPENING</p>
 							<p>
 								<a href='/mini/change'> <img border="0"
-									src='/images/mini/OFF.jpg' width="50" height=auto>
+									src='/images/mini/OFF.jpg' height="50">
 								</a>
 							</p> </span>
 						<!-- <div th:utext="${@miniController.htmlField}" /> -->
@@ -97,29 +98,11 @@
 							<th>Name</th>
 							<th>Score</th>
 						</tr>
-						<tr>
+						<tr th:each="score : ${@miniController.scores}">
 							<td>today</td>
-							<td>Minesweeper</td>
-							<td>Santa</td>
-							<td>999</td>
-						</tr>
-						<tr>
-							<td>today</td>
-							<td>Puzzle</td>
-							<td>Santa</td>
-							<td>999</td>
-						</tr>
-						<tr>
-							<td>today</td>
-							<td>GuessNumber</td>
-							<td>Santa</td>
-							<td>999</td>
-						</tr>
-						<tr>
-							<td>today</td>
-							<td>HangMan</td>
-							<td>Santa</td>
-							<td>999</td>
+							<td th:text="${score.game}" />
+							<td th:text="${score.username}" />
+							<td th:text="${score.value}" />
 						</tr>
 					</tbody>
 				</table>

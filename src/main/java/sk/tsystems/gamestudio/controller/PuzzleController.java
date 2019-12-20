@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.WebApplicationContext;
 
 import sk.tsystems.gamestudio.entity.Comment;
+import sk.tsystems.gamestudio.entity.Rating;
 import sk.tsystems.gamestudio.entity.Score;
 import sk.tsystems.gamestudio.game.npuzzle.core.Field;
 import sk.tsystems.gamestudio.game.npuzzle.core.Tile;
 import sk.tsystems.gamestudio.service.CommentService;
+import sk.tsystems.gamestudio.service.RatingService;
 import sk.tsystems.gamestudio.service.ScoreService;
 
 
@@ -23,13 +25,15 @@ public class PuzzleController {
 
 	private Field field;
 	private long startTime;
-	private String comment;
 	
 	@Autowired
 	private ScoreService scoreService;
 	
 	@Autowired
 	private CommentService commentService;
+	
+	@Autowired
+	private RatingService ratingService;
 
 	@Autowired
 	private MainController mainController;
@@ -45,7 +49,7 @@ public class PuzzleController {
 	@RequestMapping("/puzzle/move")
 	public String move(int tile) {
 		field.move(tile);
-		if (field.isSolved() && mainController.isLogged()) {
+		if (isSolved() && mainController.isLogged()) {
 			long finalTime = System.currentTimeMillis() - startTime;
 			int finalMiliSecond = (int)finalTime;
 			int score = (300000-finalMiliSecond)/100;
@@ -56,11 +60,19 @@ public class PuzzleController {
 	}
 	
 	@RequestMapping("/puzzle/comment")
-	public String index() {
-		field = new Field(4, 4);	
-		startTime = System.currentTimeMillis();
-		comment = "hala bala";
-		commentService.addComment(new Comment(mainController.getLoggedPlayer().getIdent(), mainController.getLoggedPlayer().getName(), "puzzle", comment));
+	public String comment(String content) {
+		try {
+			commentService.addComment(new Comment(mainController.getLoggedPlayer().getName(), "puzzle", content));
+		} catch (NullPointerException e) {
+		}
+		return "puzzle";
+	}
+	@RequestMapping("/puzzle/rating")
+	public String setRating(Rating rating) {
+		try {
+			setRating(new Rating(mainController.getLoggedPlayer().getName(), "puzzle", 5));
+		} catch (NullPointerException e) {
+		}
 		return "puzzle";
 	}
 	
@@ -99,5 +111,11 @@ public class PuzzleController {
 	}
 	public List<Comment> getComment(){
 		return commentService.getComment("puzzle");
+	}
+	public void setRating(){
+		return;
+	}
+	public double getRating(){
+		return ratingService.getAverageRating();
 	}
 }

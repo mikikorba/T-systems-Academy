@@ -43,20 +43,28 @@ img {
 </head>
 <body>
 	<h1>Puzzle</h1>
-	
+
 	<div th:if="${not @mainController.logged}">
-	You are notlogged Please <a href="/">log in</a><br/>
+		You are notlogged Please <a href="/">log in</a><br />
 	</div>
-	
+
 	<div th:if="${@mainController.logged}">
-	<div><br></div>
-	<span>Hi </span> 
-	<span th:text="${@mainController.loggedPlayer.name}" /> 
-	<span>!	choose your destiny</span>
-	<div><br></div>
-	<div><br></div>
-	<div><br></div>
-	You are logged as <span th:text="${@mainController.loggedPlayer.name}"/span><br/>
+		<div>
+			<br>
+		</div>
+		<span>Hi </span> <span th:text="${@mainController.loggedPlayer.name}" />
+		<span>! choose your destiny</span>
+		<div>
+			<br>
+		</div>
+		<div>
+			<br>
+		</div>
+		<div>
+			<br>
+		</div>
+		You are logged as <span th:text="${@mainController.loggedPlayer.name}"
+			/span><br />
 	</div>
 
 	<a href="/">-- Back to Menu --</a>
@@ -72,37 +80,56 @@ img {
 		<div th:text="${@puzzleController.message}" />
 		<div th:utext="${@puzzleController.htmlField}" />
 	</div>
-	
+
 	<h3>Scores</h3>
 	<ol>
 		<li th:each="score : ${@puzzleController.scores}">
-			 ident:
-			<span th:text="${score.ident}"/></span>
-			 username: 
-			<span th:text="${score.username}"/></span>
-			 value: 
-			<span th:text="${score.value}"/></span>
-			 game: 
-			<span th:text="${score.game}"/></span>
+			ident: 
+			<span th:text="${score.ident}" /></span> 
+			username: 
+			<span th:text="${score.username}" /></span> 
+			value: 
+			<span th:text="${score.value}" /></span>
+			game: 
+			<span th:text="${score.game}" /></span>
 		</li>
 	</ol>
-	
-	<form action="" method="post">
-		<div>
-			<textarea name="comments" id="comments">Hey... say something!</textarea>
-		</div>
-	<input type="submit" value="Submit">
-	</form>
 
 	<h3>Comments</h3>
+	<form action="/puzzle/comment">
+
+		<div>
+			<textarea name="content"></textarea>
+		</div>
+		<input type="submit" value="OK"/>
+	</form>
+	
 	<ol>
-		<li th:each="comment : ${@puzzleController.comment}">
-			 username: 
-			<span th:text="${comment.username}"/></span>
-			 value: 
-			<span th:text="${comment.content}"/></span>
-			 game: 
-			<span th:text="${comment.game}"/></span>
+		<li th:each="comment : ${@puzzleController.comment}"><span
+			th:text="${comment.username}" /></span> <span> : </span> 
+			<span th:text="${comment.content}" /></span></li>
+	</ol>
+	
+		<h3>Rating</h3>
+	<ol>
+ 		<li th:each="rating : ${@puzzleController.rating}">
+	<div>	
+ 		<a href='/puzzle/rating1'><img src="/images/puzzle/01.jpg" alt="1" style="width:20px;"></a>
+ 		<a href='/puzzle/rating2'><img src="/images/puzzle/02.jpg" alt="2" style="width:20px;"></a>
+ 		<a href='/puzzle/rating3'><img src="/images/puzzle/03.jpg" alt="3" style="width:20px;"></a>
+ 		<a href='/puzzle/rating4'><img src="/images/puzzle/04.jpg" alt="4" style="width:20px;"></a>
+ 		<a href='/puzzle/rating5'><img src="/images/puzzle/05.jpg" alt="5" style="width:20px;"></a>
+	</div>
+<!--
+ 			ident: 
+			<span th:text="${rating.ident}" /></span> 
+			username: 
+			<span th:text="${rating.username}" /></span> 
+			value: 
+			<span th:text="${rating.value}" /></span>
+			game: 
+			<span th:text="${rating.game}" /></span> 
+-->
 		</li>
 	</ol>
 

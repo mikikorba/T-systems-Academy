@@ -1,32 +1,48 @@
 package sk.tsystems.gamestudio.controller;
 
 import java.util.Formatter;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.WebApplicationContext;
 
+import sk.tsystems.gamestudio.entity.Comment;
+import sk.tsystems.gamestudio.entity.Score;
 import sk.tsystems.gamestudio.game.minesweeper.core.Clue;
 import sk.tsystems.gamestudio.game.minesweeper.core.Field;
 import sk.tsystems.gamestudio.game.minesweeper.core.GameState;
 import sk.tsystems.gamestudio.game.minesweeper.core.Mine;
 import sk.tsystems.gamestudio.game.minesweeper.core.Tile;
+import sk.tsystems.gamestudio.service.CommentService;
+import sk.tsystems.gamestudio.service.ScoreService;
 
 @Controller
 @Scope(WebApplicationContext.SCOPE_SESSION)
 public class MiniController {
 	private Field field;
-
+	private long startTime;
 	private boolean marking;
 
 	public boolean isMarking() {
 		return marking;
 	}
+	
+	@Autowired
+	private ScoreService scoreService;
+	
+	@Autowired
+	private CommentService commentService;
+
+	@Autowired
+	private MainController mainController;
 
 	@RequestMapping("/mini")
 	public String index() {
 		field = new Field(8, 8, 3);
+		startTime = System.currentTimeMillis();
 		return "mini";
 	}
 
@@ -39,6 +55,12 @@ public class MiniController {
 				field.openTile(row, column);
 			}
 
+		}
+		if (isSolved() && mainController.isLogged()) {
+			long finalTime = System.currentTimeMillis() - startTime;
+			int finalMiliSecond = (int)finalTime;
+			int score = (300000-finalMiliSecond)/100;
+			scoreService.addScore(new Score(mainController.getLoggedPlayer().getName(), "mini", score));
 		}
 		return "mini";
 	}
@@ -89,6 +111,13 @@ public class MiniController {
 
 	public boolean isSolved() {
 		return field.isSolved();
+	}
+	
+	public List<Score> getScores(){
+		return scoreService.getTopScores("mini");
+	}
+	public List<Comment> getComment(){
+		return commentService.getComment("mini");
 	}
 	
 	

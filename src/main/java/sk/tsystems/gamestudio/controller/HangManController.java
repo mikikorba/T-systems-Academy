@@ -9,8 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.WebApplicationContext;
 
+import sk.tsystems.gamestudio.entity.Comment;
 import sk.tsystems.gamestudio.entity.Score;
 import sk.tsystems.gamestudio.game.hangman.HangMan;
+import sk.tsystems.gamestudio.service.CommentService;
 import sk.tsystems.gamestudio.service.ScoreService;
 
 @Controller
@@ -23,6 +25,9 @@ public class HangManController {
 
 	@Autowired
 	private ScoreService scoreService;
+	
+	@Autowired
+	private CommentService commentService;
 
 	@Autowired
 	private MainController mainController;
@@ -37,15 +42,20 @@ public class HangManController {
 
 	@RequestMapping("/hangman/guess")
 	public String getNewNumber(String input) {
-
-		if (!isSolved()) {
-			this.input = input;
+		this.input = input;
+		if (!isSolved() && mainController.isLogged()) {
 			long finalTime = System.currentTimeMillis() - startTime;
-			int finalMiliSecond = (int) finalTime;
-			int score = (300000 - finalMiliSecond) / 100;
-			if (isSolved() && mainController.isLogged()) {
-				scoreService.addScore(new Score(mainController.getLoggedPlayer().getName(), "hangman", score));
-			}
+			int finalMiliSecond = (int)finalTime;
+			int score = (300000-finalMiliSecond)/100;
+			scoreService.addScore(new Score(mainController.getLoggedPlayer().getName(), "hangman", score));
+		}
+		return "hangman";
+	}
+	@RequestMapping("/hangman/comment")
+	public String comment(String content) {
+		try {
+			commentService.addComment(new Comment(mainController.getLoggedPlayer().getName(), "hangman", content));
+		} catch (NullPointerException e) {
 		}
 		return "hangman";
 	}
@@ -86,8 +96,11 @@ public class HangManController {
 		return objectWeb.isSolved();
 	}
 
-	public List<Score> getScores() {
+	public List<Score> getScores(){
 		return scoreService.getTopScores("hangman");
+	}
+	public List<Comment> getComment(){
+		return commentService.getComment("hangman");
 	}
 
 }

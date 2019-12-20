@@ -16,11 +16,10 @@ public class Comment {
 	public Comment() {
 	}
 
-	public Comment(int ident, String username, String game, String content) {
-		super();
-		this.ident = ident;
+	public Comment(String username, String game, String content) {
 		this.username = username;
 		this.game = game;
+		this.content = content;
 	}
 
 	public int getIdent() {

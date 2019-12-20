@@ -41,18 +41,29 @@ body {
 			<div th:text="${@hangManController.message3}" />
 		</h1>
 	</div>
-		<h3>Scores</h3>
+
+	<h3>Scores</h3>
 	<ol>
-		<li th:each="score : ${@hangManController.scores}">
-			 ident:
-			<span th:text="${score.ident}"/></span>
-			 username: 
-			<span th:text="${score.username}"/></span>
-			 value: 
-			<span th:text="${score.value}"/></span>
-			 game: 
-			<span th:text="${score.game}"/></span>
+		<li th:each="score : ${@hangManController.scores}">ident: <span
+			th:text="${score.ident}" /></span> username: <span
+			th:text="${score.username}" /></span> value: <span th:text="${score.value}" /></span>
+			game: <span th:text="${score.game}" /></span>
 		</li>
 	</ol>
+
+	<h3>Comments</h3>
+	<form action="/hangman/comment">
+
+		<div>
+			<textarea name="content"></textarea>
+		</div>
+		<input type="submit" value="OK" />
+	</form>
+	<ol>
+		<li th:each="comment : ${@hangManController.comment}"><span
+			th:text="${comment.username}" /></span> <span> : </span> 
+			<span th:text="${comment.content}" /></span></li>
+	</ol>
+
 </body>
 </html>
