@@ -41,7 +41,7 @@ public class MiniController {
 
 	@RequestMapping("/mini")
 	public String index() {
-		field = new Field(8, 8, 3);
+		field = new Field(10, 10, 1);
 		startTime = System.currentTimeMillis();
 		return "mini";
 	}
@@ -56,12 +56,14 @@ public class MiniController {
 			}
 
 		}
-		if (isSolved() && mainController.isLogged()) {
+		if (isWin() && mainController.isLogged()) {
 			long finalTime = System.currentTimeMillis() - startTime;
 			int finalMiliSecond = (int)finalTime;
 			int score = (300000-finalMiliSecond)/100;
 			scoreService.addScore(new Score(mainController.getLoggedPlayer().getName(), "mini", score));
 		}
+		else if (isLose() && mainController.isLogged()) {
+			}
 		return "mini";
 	}
 
@@ -111,6 +113,12 @@ public class MiniController {
 
 	public boolean isSolved() {
 		return field.isSolved();
+	}
+	public boolean isLose() {
+		return field.isLose();
+	}
+	public boolean isWin() {
+		return field.isWin();
 	}
 	
 	public List<Score> getScores(){

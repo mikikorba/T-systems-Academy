@@ -43,7 +43,7 @@ public class HangManController {
 	@RequestMapping("/hangman/guess")
 	public String getNewNumber(String input) {
 		this.input = input;
-		if (!isSolved() && mainController.isLogged()) {
+		if (objectWeb.isSolved() && mainController.isLogged()) {
 			long finalTime = System.currentTimeMillis() - startTime;
 			int finalMiliSecond = (int)finalTime;
 			int score = (300000-finalMiliSecond)/100;
@@ -65,7 +65,8 @@ public class HangManController {
 
 		try {
 			if (objectWeb.isSolved()) {
-				return "You Win!!" + " Uhadol si meno " + objectWeb.getName();
+//				return "You Win!!" + " Uhadol si meno " + objectWeb.getName();
+				return "hangman";
 			} else if (objectWeb.getHealth() < 1) {
 				return "You Lose!!" + " Spravne meno bolo " + objectWeb.getName();
 			} else if (input != null && input.length() > 0) {

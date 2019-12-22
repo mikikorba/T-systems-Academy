@@ -1,0 +1,54 @@
+.col-12>div>span>a>img{
+	 height: 30px;
+	 width: auto;
+	 border: 0;
+}
+.col-12>div>div>table>tbody{
+	background: #c0c0c0;
+}
+.col-12>div>div>table{
+	text-align: center;
+	margin: auto;
+}
+.col-12>div>div>table>tbody *{
+	margin: 0px;
+	padding: 0px;
+	border-width: 0px;
+	width: 8vw;
+	font-size: 0;
+}
+.col-12>div>img{
+	 height: 200px;
+	 width: auto;
+	 border: 0;
+}
+
+.col-12>div>body {
+	background-color: black;
+	color: gray;
+}
+
+.col-12>div>td:hover {
+	background-color: gray;
+}
+
+.col-12>div>* {
+	margin: 0px;
+	padding: 0px;
+}
+
+.col-12>div>table {
+	border-spacing: 0px;
+	font-size: 0;
+}
+
+.col-12>div>a {
+	margin: 0px;
+	padding: 0px;
+	text-decoration: none;
+	cursor: initial;
+}
+
+.col-12>div>a:hover {
+	background-color: gray;
+}

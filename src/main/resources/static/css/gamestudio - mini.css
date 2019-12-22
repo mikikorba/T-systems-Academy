@@ -1,15 +1,19 @@
-/* .maincenter img {
-	height: 20px;
-	width: auto;
+.col-12>div>span>a>img{
+	 height: 30px;
+	 width: auto;
+	 border: 0;
 }
-.maincenter td img{
-	width: 25px;
-	height: 25px;
-	overflow: auto;
+.col-12>div>div>table>tbody{
+	background: #c0c0c0;
 }
-.maincenter td{
-	font-size: 0px;
+.col-12>div>div>table{
+	text-align: center;
+	margin: auto;
 }
-.maincenter tbody {
-    background-color: #e4f0f5;
-} */
+.col-12>div>div>table>tbody *{
+	margin: 0px;
+	padding: 0px;
+	border-width: 0px;
+	width: 20px;
+	font-size: 0;
+}

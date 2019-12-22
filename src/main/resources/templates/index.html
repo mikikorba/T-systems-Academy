@@ -40,11 +40,8 @@
 			<div th:if="${@mainController.logged}">
 				<div><br></div>
 				<span>Hi </span> 
-				<span th:text="${@mainController.loggedPlayer.name}" /> <span>!
-					choose your destiny</span>
-				<div><br></div>
-				<div><br></div>
-				<div><br></div>
+				<span class=meno th:text="${@mainController.loggedPlayer.name}" />
+				<span>! choose your destiny</span>
 				<form action="/logout">
 					<button type="submit" class="button" value="Logout">Logout</button>
 				</form>
@@ -93,31 +90,31 @@
 				<table>
 					<tbody>
 						<tr>
-							<th>Date</th>
+							<!-- <th>Date</th> -->
 							<th>Game</th>
 							<th>Name</th>
 							<th>Score</th>
 						</tr>
 						<tr>
-							<td>today</td>
+							<!-- <td>today</td> -->
 							<td>Minesweeper</td>
 							<td>Santa</td>
 							<td>999</td>
 						</tr>
 						<tr>
-							<td>today</td>
+							<!-- <td>today</td> -->
 							<td>Puzzle</td>
 							<td>Santa</td>
 							<td>999</td>
 						</tr>
 						<tr>
-							<td>today</td>
+							<!-- <td>today</td> -->
 							<td>GuessNumber</td>
 							<td>Santa</td>
 							<td>999</td>
 						</tr>
 						<tr>
-							<td>today</td>
+							<!-- <td>today</td> -->
 							<td>HangMan</td>
 							<td>Santa</td>
 							<td>999</td>

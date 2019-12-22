@@ -151,16 +151,26 @@ public class Field {
 	public boolean isSolved() {
 
 		if (state == GameState.FAILED) {
-			System.out.println("LOSE !");
 			return false;
 		} else if ((rowCount * columnCount) - getNumberOf(State.OPEN) == mineCount) {
 			state = GameState.SOLVED;
-			System.out.println("WIN !");
 			return false;
 		}
 		return true;
 
 //		throw new UnsupportedOperationException("Method isSolved not yet implemented");
+	}
+
+	public boolean isLose() {
+		if (state == GameState.FAILED)
+			return true;
+		return false;
+	}
+
+	public boolean isWin() {
+		if ((rowCount * columnCount) - getNumberOf(State.OPEN) == mineCount)
+			return true;
+		return false;
 	}
 
 	public int getNumberOf(Tile.State state) {// kolko je akych dlazdic

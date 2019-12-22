@@ -1,64 +1,131 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>GuessTheNumber</title>
+<title>Guess the Number</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<style>
-body {
-	background-color: black;
-	color: gray;
-}
-</style>
+<link rel="stylesheet" href="/css/normalize.css" />
+<link rel="stylesheet" href="/css/gamestudio.css" />
+<link rel="stylesheet" href="/css/gamestudio - guessnumber.css" />
+
 </head>
 <body>
-	<h1>GuessTheNumber</h1>
-
-	<a href="/">-- Back to Menu --</a>
-	<br />
-	<a href="/guess">-- New game --</a>
-	<br />
-
-	<div th:if="${@guessNumberController.solved}">
-		<h1>YOU SOLVED HANGMAN</h1>
+	<div class="textTop">
+		<h1>Game Studio</h1>
 	</div>
-	
-	<div th:if="${not @guessNumberController.solved}">
-	
-		<form action="/guess/new" metod="get" class="container">
-			<h3>Login</h3>
-	
-			<label for="input"> Guess Number </label> <br> 
-			<input type="text" placeholder="Your Number" name="input" autofocus> <br> 
-	
-			<button type="submit" class="button" value="Login">Send</button>
-		</form>
-		<h1>
-			<div th:text="${@guessNumberController.message}" />
-		</h1>
-  	</div>
 
-<h3>Scores</h3>
-	<ol>
-		<li th:each="score : ${@guessNumberController.scores}">ident: <span
-			th:text="${score.ident}" /></span> username: <span
-			th:text="${score.username}" /></span> value: <span th:text="${score.value}" /></span>
-			game: <span th:text="${score.game}" /></span>
-		</li>
-	</ol>
+	<div class="menu1" style="overflow: auto">
 
-	<h3>Comments</h3>
-	<form action="/guess/comment">
+		<div class="menuLeft">
+			<a href="/">-- Back to Menu --</a> <br /> <a href="/guess">--
+				New game --</a> <br />
 
-		<div>
-			<textarea name="content"></textarea>
+			<div th:if="${not @mainController.logged}">
+				You are notlogged Please <a href="/">log in</a><br />
+			</div>
+
+			<div th:if="${@mainController.logged}">
+				<span>Hi </span> <span class=meno
+					th:text="${@mainController.loggedPlayer.name}" /> <span>enjoy
+					the Guess the Number</span>
+			</div>
 		</div>
-		<input type="submit" value="OK" />
-	</form>
-	<ol>
-		<li th:each="comment : ${@guessNumberController.comment}"><span
-			th:text="${comment.username}" /></span> <span> : </span> 
-			<span th:text="${comment.content}" /></span></li>
-	</ol>
 
+		<div class="main">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<!-- tu daj stred -->
+						<div th:if="${@guessNumberController.solved}">
+							<h1>YOU SOLVED HANGMAN</h1>
+							<img class="Boy" src='/images/vault-boy.png'>
+						</div>
+
+						<div th:if="${not @guessNumberController.solved}">
+
+							<form action="/guess/new" metod="get" class="container">
+
+								<label for="input"> Guess Number </label> 
+								<br> 
+								<input type="text" placeholder="Your Number" name="input" autofocus>
+								<br>
+								<button type="submit" class="button" value="Login">Send</button>
+							</form>
+							<h1>
+								<div th:text="${@guessNumberController.message}" />
+							</h1>
+						</div>
+						<!-- tu daj stred -->
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="menuRight">
+			<h2>Top 10 scores</h2>
+			<div class="scrollmenu">
+				<table>
+					<tbody>
+						<tr>
+							<!-- <th>Date</th> -->
+							<th>Player</th>
+							<th>Score</th>
+						</tr>
+						<tr th:each="score : ${@guessNumberController.scores}">
+							<!-- <td>today</td> -->
+							<td th:text="${score.username}" />
+							<td th:text="${score.value}" />
+						</tr>
+					</tbody>
+				</table>
+
+				<h3>Rating</h3>
+				<ol>
+					<!-- 	<li th:each="rating : ${@puzzleController.rating}"> -->
+					<div>
+						<a href='/puzzle/rating1'><img src="/images/puzzle/01.jpg"
+							alt="1" style="width: 20px;"></a> <a href='/puzzle/rating2'><img
+							src="/images/puzzle/02.jpg" alt="2" style="width: 20px;"></a> <a
+							href='/puzzle/rating3'><img src="/images/puzzle/03.jpg"
+							alt="3" style="width: 20px;"></a> <a href='/puzzle/rating4'><img
+							src="/images/puzzle/04.jpg" alt="4" style="width: 20px;"></a> <a
+							href='/puzzle/rating5'><img src="/images/puzzle/05.jpg"
+							alt="5" style="width: 20px;"></a>
+					</div>
+					<!--
+ 			ident: 
+			<span th:text="${rating.ident}" /></span> 
+			username: 
+			<span th:text="${rating.username}" /></span> 
+			value: 
+			<span th:text="${rating.value}" /></span>
+			game: 
+			<span th:text="${rating.game}" /></span> 
+-->
+					</li>
+				</ol>
+
+			</div>
+		</div>
+	</div>
+	<div class="comments">
+		<h3>Comments</h3>
+		<form action="/guess/comment">
+			<textarea name="content"></textarea>
+			<input type="submit" value="OK" />
+		</form>
+		<h3>Player comments</h3>
+		<ol>
+			<li th:each="comment : ${@guessNumberController.comment}"><span
+				th:text="${comment.username}" /></span> <span> : </span> <span
+				th:text="${comment.content}" /></span></li>
+		</ol>
+	</div>
+
+	<div class="copyright">&copy; copyright MichalKorba</div>
 </body>
 </html>

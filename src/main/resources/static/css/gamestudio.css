@@ -172,3 +172,19 @@ div.scrollmenu {
 	overflow: auto;
 	white-space: nowrap;
 }
+.meno{
+font-size: 30px;
+color: blue;
+}
+.comments>form>textarea{
+	width: 80%;
+	color: black;
+}
+.comments>form>input{
+	width: 30px;
+}
+.Boy{
+	 height: 150px;
+	 width: 150px;
+	 border: 0;
+}

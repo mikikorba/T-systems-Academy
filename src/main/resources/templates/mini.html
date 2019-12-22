@@ -8,13 +8,10 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-	integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-	crossorigin="anonymous">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" href="/css/normalize.css" />
 <link rel="stylesheet" href="/css/gamestudio.css" />
+<link rel="stylesheet" href="/css/gamestudio - mini.css" />
 
 </head>
 <body>
@@ -28,29 +25,13 @@
 			<a href="/">-- Back to Menu --</a> <br /> <a href="/mini">-- New
 				game --</a> <br />
 			<div th:if="${not @mainController.logged}">
-				<form action="/login" class="container">
-					<h3>Login</h3>
-
-					<label for="name"> Name </label> <br> <input type="text"
-						placeholder="Enter Name" name="name" required> <br> <label
-						for="pass"> Password </label><br> <input type="password"
-						placeholder="Enter Password" name="pass" required> <br>
-
-					<button type="submit" class="button" value="Login">Login</button>
-				</form>
+				You are notlogged Please <a href="/">log in</a><br />
 			</div>
 
 			<div th:if="${@mainController.logged}">
-				<div><br></div>
 				<span>Hi </span> 
-				<span th:text="${@mainController.loggedPlayer.name}" /> <span>!
-					enjoy the Minesweeper</span>
-				<div><br></div>
-				<div><br></div>
-				<div><br></div>
-				<form action="/logout">
-					<button type="submit" class="button" value="Logout">Logout</button>
-				</form>
+				<span class=meno th:text="${@mainController.loggedPlayer.name}" />
+				<span>enjoy the Minesweeper</span>
 			</div>
 		</div>
 
@@ -60,25 +41,34 @@
 					<div class="col-12">
 
 						<!-- tu daj stred -->
-						<span th:if="${@miniController.marking}"><p>MARKING</p>
-							<p>
-								<a href='/mini/change'> <img border="0"
-									src='/images/mini/ON.jpg' height="50">
-								</a>
-							</p> </span> 
-							<span th:if="${not @miniController.marking}"><p>OPENING</p>
-							<p>
-								<a href='/mini/change'> <img border="0"
-									src='/images/mini/OFF.jpg' height="50">
-								</a>
-							</p> </span>
+						
 						<!-- <div th:utext="${@miniController.htmlField}" /> -->
 
 						<div th:if="${not @miniController.solved}">
-							<h1>YOU SOLVED MINESWEEPERS</h1>
+							<div th:if="${@miniController.win}">
+								<h3>YOU WIN MINESWEEPERS</h3>
+								<img class="Boy" src='/images/vault-boy.png'>
+							</div>
+							<div th:if="${@miniController.lose}">
+								<h3>YOU LOSE MINESWEEPERS</h3>
+							</div>
 						</div>
+						
 						<div th:if="${@miniController.solved}">
-							<div th:utext="${@miniController.htmlField}" />
+						<div th:utext="${@miniController.htmlField}" />
+						<br>
+						<span th:if="${@miniController.marking}">MARKING
+								<a href='/mini/change'><img border="0"
+									src='/images/mini/ON.jpg'>
+								</a>
+						</span> 
+						<span th:if="${not @miniController.marking}">MARKING
+						
+							<a href='/mini/change'><img border="0"
+								src='/images/mini/OFF.jpg'>
+							</a>
+						 </span>
+							
 
 							<!-- tu daj stred -->
 						</div>
@@ -93,14 +83,12 @@
 				<table>
 					<tbody>
 						<tr>
-							<th>Date</th>
-							<th>Game</th>
-							<th>Name</th>
+							<!-- <th>Date</th> -->
+							<th>Player</th>
 							<th>Score</th>
 						</tr>
 						<tr th:each="score : ${@miniController.scores}">
-							<td>today</td>
-							<td th:text="${score.game}" />
+							<!-- <td>today</td> -->
 							<td th:text="${score.username}" />
 							<td th:text="${score.value}" />
 						</tr>
@@ -108,6 +96,22 @@
 				</table>
 			</div>
 		</div>
+	</div>
+	<div class="comments">
+		<h3>Comments</h3>
+		<form action="/mini/comment">
+
+			<div>
+				<textarea name="content"></textarea>
+			</div>
+			<input type="submit" value="OK" />
+		</form>
+
+		<ol>
+			<li th:each="comment : ${@miniController.comment}"><span
+				th:text="${comment.username}" /></span> <span> : </span> <span
+				th:text="${comment.content}" /></span></li>
+		</ol>
 	</div>
 	<div class="copyright">&copy; copyright MichalKorba</div>
 </body>
