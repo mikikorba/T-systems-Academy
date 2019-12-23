@@ -86,28 +86,18 @@
 
 				<h3>Rating</h3>
 				<ol>
-					<!-- 	<li th:each="rating : ${@puzzleController.rating}"> -->
 					<div>
-						<a href='/puzzle/rating1'><img src="/images/puzzle/01.jpg"
-							alt="1" style="width: 20px;"></a> <a href='/puzzle/rating2'><img
+						<a name="rating" href='/hangman/rating?rating=1'><img
+							src="/images/puzzle/01.jpg" alt="1" style="width: 20px;"></a> <a
+							name="rating" href='/hangman/rating?rating=2'><img
 							src="/images/puzzle/02.jpg" alt="2" style="width: 20px;"></a> <a
-							href='/puzzle/rating3'><img src="/images/puzzle/03.jpg"
-							alt="3" style="width: 20px;"></a> <a href='/puzzle/rating4'><img
+							name="rating" href='/hangman/rating?rating=3'><img
+							src="/images/puzzle/03.jpg" alt="3" style="width: 20px;"></a> <a
+							name="rating" href='/hangman/rating?rating=4'><img
 							src="/images/puzzle/04.jpg" alt="4" style="width: 20px;"></a> <a
-							href='/puzzle/rating5'><img src="/images/puzzle/05.jpg"
-							alt="5" style="width: 20px;"></a>
+							name="rating" href='/hangman/rating?rating=5'><img
+							src="/images/puzzle/05.jpg" alt="5" style="width: 20px;"></a>
 					</div>
-					<!--
- 			ident: 
-			<span th:text="${rating.ident}" /></span> 
-			username: 
-			<span th:text="${rating.username}" /></span> 
-			value: 
-			<span th:text="${rating.value}" /></span>
-			game: 
-			<span th:text="${rating.game}" /></span> 
--->
-					</li>
 				</ol>
 			</div>
 		</div>

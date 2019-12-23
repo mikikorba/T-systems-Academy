@@ -14,24 +14,22 @@ public class RatingServiceJPA implements RatingService {
 	private EntityManager entityManager;
 
 	@Override
-	public void setRating(Rating r) {
+	public void setRating(Rating rating) {
 		try {
 			Rating db = (Rating) entityManager
 					.createQuery("select r from Rating r where r.username = :username and r.game = :game")
-					.setParameter("username", r.getUsername())
-					.setParameter("game", r.getGame())
+					.setParameter("username", rating.getUsername())
+					.setParameter("game", rating.getGame())
 					.getSingleResult();
-			db.setValue(r.getValue());
+			db.setValue(rating.getValue());
 		} catch (NoResultException e) {
-			e.printStackTrace();
-			entityManager.persist(r);
+			entityManager.persist(rating);
 		}
 	}
 
 	@Override
 	public double getAverageRating() {
-		Object result = entityManager.createQuery("select r from Rating r where r.username = :username and r.game = :game").getSingleResult();
-		double result2 = (Double)result;
-		return result2;
+		Object result = entityManager.createQuery("select trunc(avg(r.value), 1) from Rating r where r.username = :username and r.game = :game").getSingleResult();
+		return result == null ? -1.0 : ((Double)result).doubleValue();
 	}
 }

@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+.<!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>Minesweeper</title>
@@ -94,6 +94,22 @@
 						</tr>
 					</tbody>
 				</table>
+								<h3>Rating</h3>
+				<ol>
+					<div>
+						<a name="rating" href='/mini/rating?rating=1'><img
+							src="/images/puzzle/01.jpg" alt="1" style="width: 20px;"></a> <a
+							name="rating" href='/mini/rating?rating=2'><img
+							src="/images/puzzle/02.jpg" alt="2" style="width: 20px;"></a> <a
+							name="rating" href='/mini/rating?rating=3'><img
+							src="/images/puzzle/03.jpg" alt="3" style="width: 20px;"></a> <a
+							name="rating" href='/mini/rating?rating=4'><img
+							src="/images/puzzle/04.jpg" alt="4" style="width: 20px;"></a> <a
+							name="rating" href='/mini/rating?rating=5'><img
+							src="/images/puzzle/05.jpg" alt="5" style="width: 20px;"></a>
+					</div>
+					</li>
+				</ol>
 			</div>
 		</div>
 	</div>
@@ -101,9 +117,9 @@
 		<h3>Comments</h3>
 		<form action="/mini/comment">
 
-			<div>
+
 				<textarea name="content"></textarea>
-			</div>
+
 			<input type="submit" value="OK" />
 		</form>
 

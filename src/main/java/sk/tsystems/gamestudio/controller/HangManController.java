@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.WebApplicationContext;
 
 import sk.tsystems.gamestudio.entity.Comment;
+import sk.tsystems.gamestudio.entity.Rating;
 import sk.tsystems.gamestudio.entity.Score;
 import sk.tsystems.gamestudio.game.hangman.HangMan;
 import sk.tsystems.gamestudio.service.CommentService;
+import sk.tsystems.gamestudio.service.RatingService;
 import sk.tsystems.gamestudio.service.ScoreService;
 
 @Controller
@@ -28,6 +30,9 @@ public class HangManController {
 	
 	@Autowired
 	private CommentService commentService;
+	
+	@Autowired
+	private RatingService ratingService;
 
 	@Autowired
 	private MainController mainController;
@@ -55,6 +60,14 @@ public class HangManController {
 	public String comment(String content) {
 		try {
 			commentService.addComment(new Comment(mainController.getLoggedPlayer().getName(), "hangman", content));
+		} catch (NullPointerException e) {
+		}
+		return "hangman";
+	}
+	@RequestMapping("/hangman/rating")
+	public String setRating(int rating) {
+		try {
+			ratingService.setRating(new Rating(mainController.getLoggedPlayer().getName(), "hangman", rating));
 		} catch (NullPointerException e) {
 		}
 		return "hangman";

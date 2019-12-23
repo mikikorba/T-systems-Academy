@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.WebApplicationContext;
 
 import sk.tsystems.gamestudio.entity.Comment;
+import sk.tsystems.gamestudio.entity.Rating;
 import sk.tsystems.gamestudio.entity.Score;
 import sk.tsystems.gamestudio.game.minesweeper.core.Clue;
 import sk.tsystems.gamestudio.game.minesweeper.core.Field;
@@ -17,6 +18,7 @@ import sk.tsystems.gamestudio.game.minesweeper.core.GameState;
 import sk.tsystems.gamestudio.game.minesweeper.core.Mine;
 import sk.tsystems.gamestudio.game.minesweeper.core.Tile;
 import sk.tsystems.gamestudio.service.CommentService;
+import sk.tsystems.gamestudio.service.RatingService;
 import sk.tsystems.gamestudio.service.ScoreService;
 
 @Controller
@@ -38,6 +40,9 @@ public class MiniController {
 
 	@Autowired
 	private MainController mainController;
+	
+	@Autowired
+	private RatingService ratingService;
 
 	@RequestMapping("/mini")
 	public String index() {
@@ -70,6 +75,23 @@ public class MiniController {
 	@RequestMapping("/mini/change")
 	public String change() {
 		marking = !marking;
+		return "mini";
+	}
+	
+	@RequestMapping("/mini/comment")
+	public String comment(String content) {
+		try {
+			commentService.addComment(new Comment(mainController.getLoggedPlayer().getName(), "mini", content));
+		} catch (NullPointerException e) {
+		}
+		return "mini";
+	}
+	@RequestMapping("/mini/rating")
+	public String setRating(int rating) {
+		try {
+			ratingService.setRating(new Rating(mainController.getLoggedPlayer().getName(), "mini", rating));
+		} catch (NullPointerException e) {
+		}
 		return "mini";
 	}
 

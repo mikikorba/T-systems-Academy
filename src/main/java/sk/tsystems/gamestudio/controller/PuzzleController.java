@@ -68,9 +68,9 @@ public class PuzzleController {
 		return "puzzle";
 	}
 	@RequestMapping("/puzzle/rating")
-	public String setRating(Rating rating) {
+	public String setRating(int rating) {
 		try {
-			setRating(new Rating(mainController.getLoggedPlayer().getName(), "puzzle", 5));
+			ratingService.setRating(new Rating(mainController.getLoggedPlayer().getName(), "puzzle", rating));
 		} catch (NullPointerException e) {
 		}
 		return "puzzle";
@@ -101,20 +101,13 @@ public class PuzzleController {
 		return field.isSolved();
 	}
 	
-
-	public String getMessage() {
-		return "Hello from Java";
-	}
-	
 	public List<Score> getScores(){
 		return scoreService.getTopScores("puzzle");
 	}
 	public List<Comment> getComment(){
 		return commentService.getComment("puzzle");
 	}
-	public void setRating(){
-		return;
-	}
+
 	public double getRating(){
 		return ratingService.getAverageRating();
 	}

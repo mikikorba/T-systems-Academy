@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.WebApplicationContext;
 
 import sk.tsystems.gamestudio.entity.Comment;
+import sk.tsystems.gamestudio.entity.Rating;
 import sk.tsystems.gamestudio.entity.Score;
 import sk.tsystems.gamestudio.game.guessnumber.GuessNumber;
 import sk.tsystems.gamestudio.service.CommentService;
+import sk.tsystems.gamestudio.service.RatingService;
 import sk.tsystems.gamestudio.service.ScoreService;
 
 @Controller
@@ -33,6 +35,9 @@ public class GuessNumberController {
 
 	@Autowired
 	private MainController mainController;
+	
+	@Autowired
+	private RatingService ratingService;
 	
 	@RequestMapping("/guess")
 	public String getNumber() {
@@ -59,6 +64,15 @@ public class GuessNumberController {
 	public String comment(String content) {
 		try {
 			commentService.addComment(new Comment(mainController.getLoggedPlayer().getName(), "guess", content));
+		} catch (NullPointerException e) {
+		}
+		return "guess";
+	}
+	
+	@RequestMapping("/guess/rating")
+	public String setRating(int rating) {
+		try {
+			ratingService.setRating(new Rating(mainController.getLoggedPlayer().getName(), "guess", rating));
 		} catch (NullPointerException e) {
 		}
 		return "guess";
