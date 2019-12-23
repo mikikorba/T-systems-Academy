@@ -46,7 +46,7 @@ public class MiniController {
 
 	@RequestMapping("/mini")
 	public String index() {
-		field = new Field(10, 10, 1);
+		field = new Field(10, 10, 5);
 		startTime = System.currentTimeMillis();
 		return "mini";
 	}
