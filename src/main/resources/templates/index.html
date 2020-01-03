@@ -28,11 +28,14 @@
 			<div th:if="${not @mainController.logged}">
 				<form action="/login" class="container">
 					<h3>Login</h3>
-
-					<label for="name"> Name </label> <br> <input type="text"
-						placeholder="Enter Name" name="name" required> <br> <label
-						for="pass"> Password </label><br> <input type="password"
-						placeholder="Enter Password" name="pass" required> <br>
+					<label for="name"> Name </label> 
+					<br> 
+					<input type="text"	placeholder="Enter Name" name="name" required> 
+					<br> 
+					<label for="pass"> Password </label>
+					<br> 
+					<input type="password" placeholder="Enter Password" name="pass" required> 
+					<br>
 					<button type="submit" class="button" value="Login">Login</button>
 				</form>
 			</div>
@@ -46,6 +49,16 @@
 					<button type="submit" class="button" value="Logout">Logout</button>
 				</form>
 			</div>
+
+			<div th:if="${not @mainController.logged}">
+				<form action="/register" class="container">
+					<h3>Create new account</h3>
+					<input type="text"	placeholder="Enter Name" name="name" required> 
+					<input type="password" placeholder="Enter Password" name="pass" required> 
+					<button type="submit" class="button" value="Register">Create</button>
+				</form>
+			</div>
+			
 		</div>
 
 		<div class="main">

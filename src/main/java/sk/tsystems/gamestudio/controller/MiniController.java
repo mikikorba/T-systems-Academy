@@ -149,7 +149,4 @@ public class MiniController {
 	public List<Comment> getComment(){
 		return commentService.getComment("mini");
 	}
-	
-	
-
 }

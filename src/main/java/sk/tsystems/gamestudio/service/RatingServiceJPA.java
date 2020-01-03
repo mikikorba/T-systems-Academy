@@ -29,7 +29,9 @@ public class RatingServiceJPA implements RatingService {
 
 	@Override
 	public double getAverageRating() {
-		Object result = entityManager.createQuery("select trunc(avg(r.value), 1) from Rating r where r.username = :username and r.game = :game").getSingleResult();
+		Object result = entityManager.createQuery(
+				"select trunc(avg(r.value), 1) from Rating r where r.username = :username and r.game = :game")
+				.getSingleResult();
 		return result == null ? -1.0 : ((Double)result).doubleValue();
 	}
 }
