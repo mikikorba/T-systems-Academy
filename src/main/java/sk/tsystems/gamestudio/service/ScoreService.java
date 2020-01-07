@@ -7,5 +7,5 @@ import sk.tsystems.gamestudio.entity.Score;
 public interface ScoreService {
 	void addScore(Score score);
 
-	List<Score> getTopScores(String game);
+	List<Score> getTopScores(String game, int i);
 }

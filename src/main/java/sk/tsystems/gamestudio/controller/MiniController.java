@@ -144,7 +144,10 @@ public class MiniController {
 	}
 	
 	public List<Score> getScores(){
-		return scoreService.getTopScores("mini");
+		return scoreService.getTopScores("mini", 10);
+	}
+	public List<Score> getScoresMain(){
+		return scoreService.getTopScores("mini", 1);
 	}
 	public List<Comment> getComment(){
 		return commentService.getComment("mini");

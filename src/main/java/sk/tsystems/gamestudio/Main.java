@@ -15,7 +15,7 @@ public class Main {
 		menu();
 		ScoreService scoreService = new ScoreServiceJDBC();
 
-		for (Score score : scoreService.getTopScores("npuzzle"))
+		for (Score score : scoreService.getTopScores("npuzzle", 10))
 			System.out.println(score.getUsername() + "    \t" + score.getValue());
 	}
 

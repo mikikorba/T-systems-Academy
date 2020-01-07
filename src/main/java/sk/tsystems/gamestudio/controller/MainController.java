@@ -20,7 +20,9 @@ public class MainController {
 	
 	@RequestMapping("/login")
 	public String login(Player player) {
-		Player one = registerService.getRegister();
+		Player one = registerService.getRegister(player.getName());
+		if (one==null)
+			return "redirect:/";
 		if (one.getName()
 				.equals(player.getName()) 
 			&& 
@@ -29,9 +31,11 @@ public class MainController {
 			loggedPlayer = player;	
 		}
 		
+//		Player one = registerService.getRegister(player.getName());
 //		if ("heslo".equals(player.getPass())) {
 //			loggedPlayer = player;			
 //		}
+		
 		return "redirect:/";
 	}
 	

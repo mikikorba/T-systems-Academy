@@ -108,29 +108,29 @@
 							<th>Name</th>
 							<th>Score</th>
 						</tr>
-						<tr>
+						<tr th:each="score : ${@miniController.scoresMain}">
 							<!-- <td>today</td> -->
 							<td>Minesweeper</td>
-							<td>Santa</td>
-							<td>999</td>
+							<td th:text="${score.username}" />
+							<td th:text="${score.value}" />
 						</tr>
-						<tr>
+						<tr th:each="score : ${@puzzleController.scoresMain}">
 							<!-- <td>today</td> -->
 							<td>Puzzle</td>
-							<td>Santa</td>
-							<td>999</td>
+							<td th:text="${score.username}" />
+							<td th:text="${score.value}" />
 						</tr>
-						<tr>
+						<tr th:each="score : ${@guessNumberController.scoresMain}">
 							<!-- <td>today</td> -->
 							<td>GuessNumber</td>
-							<td>Santa</td>
-							<td>999</td>
+							<td th:text="${score.username}" />
+							<td th:text="${score.value}" />
 						</tr>
-						<tr>
+						<tr th:each="score : ${@hangManController.scoresMain}">
 							<!-- <td>today</td> -->
 							<td>HangMan</td>
-							<td>Santa</td>
-							<td>999</td>
+							<td th:text="${score.username}" />
+							<td th:text="${score.value}" />
 						</tr>
 					</tbody>
 				</table>

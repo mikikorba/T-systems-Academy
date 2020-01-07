@@ -105,7 +105,10 @@ public class GuessNumberController {
 		return true;
 	}
 	public List<Score> getScores(){
-		return scoreService.getTopScores("guess");
+		return scoreService.getTopScores("guess", 10);
+	}
+	public List<Score> getScoresMain(){
+		return scoreService.getTopScores("guess", 1);
 	}
 	public List<Comment> getComment(){
 		return commentService.getComment("guess");

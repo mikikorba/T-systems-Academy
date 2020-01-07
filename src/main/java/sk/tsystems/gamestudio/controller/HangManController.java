@@ -111,7 +111,10 @@ public class HangManController {
 	}
 
 	public List<Score> getScores(){
-		return scoreService.getTopScores("hangman");
+		return scoreService.getTopScores("hangman", 10);
+	}
+	public List<Score> getScoresMain(){
+		return scoreService.getTopScores("hangman", 1);
 	}
 	public List<Comment> getComment(){
 		return commentService.getComment("hangman");

@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import sk.tsystems.gamestudio.entity.Score;
 
 public class ScoreServiceJDBC implements ScoreService {
@@ -32,7 +34,7 @@ public class ScoreServiceJDBC implements ScoreService {
 
 	}
 
-	public List<Score> getTopScores(String game) {
+	public List<Score> getTopScores(String game, int i) {
 		try (Connection connection = DriverManager.getConnection(URL, LOGIN, PASSWORD);
 				PreparedStatement ps = connection.prepareStatement(SELECT)) {
 			ps.setString(1, game);

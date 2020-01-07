@@ -102,7 +102,10 @@ public class PuzzleController {
 	}
 	
 	public List<Score> getScores(){
-		return scoreService.getTopScores("puzzle");
+		return scoreService.getTopScores("puzzle", 10);
+	}
+	public List<Score> getScoresMain(){
+		return scoreService.getTopScores("puzzle", 1);
 	}
 	public List<Comment> getComment(){
 		return commentService.getComment("puzzle");

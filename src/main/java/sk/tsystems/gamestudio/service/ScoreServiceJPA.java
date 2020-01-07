@@ -23,11 +23,12 @@ public class ScoreServiceJPA implements ScoreService{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Score> getTopScores(String game) {
+	
+	public List<Score> getTopScores(String game, int i) {
 //		JPQL jazyk - java persistence querry line
 		return (List<Score>)entityManager.createQuery(
 				"select s from Score s where s.game = :game order by s.value desc")
-				.setParameter("game", game).setMaxResults(10).getResultList();
+				.setParameter("game", game).setMaxResults(i).getResultList();
 		}
 
 }
