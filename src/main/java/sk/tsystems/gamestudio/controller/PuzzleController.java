@@ -1,5 +1,7 @@
 package sk.tsystems.gamestudio.controller;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Formatter;
 import java.util.List;
 
@@ -49,11 +51,12 @@ public class PuzzleController {
 	@RequestMapping("/puzzle/move")
 	public String move(int tile) {
 		field.move(tile);
+		Date date = Calendar.getInstance().getTime();
 		if (isSolved() && mainController.isLogged()) {
 			long finalTime = System.currentTimeMillis() - startTime;
 			int finalMiliSecond = (int)finalTime;
 			int score = (300000-finalMiliSecond)/100;
-			scoreService.addScore(new Score(mainController.getLoggedPlayer().getName(), "puzzle", score));
+			scoreService.addScore(new Score(mainController.getLoggedPlayer().getName(), "puzzle", score, date));
 		}
 	
 		return "puzzle";

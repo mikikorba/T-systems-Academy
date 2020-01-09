@@ -1,5 +1,7 @@
 package sk.tsystems.gamestudio.controller;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -51,11 +53,12 @@ public class GuessNumberController {
 	@RequestMapping("/guess/new")
 	public String getNumber(String input) {
 		this.input = input;
+		Date date = Calendar.getInstance().getTime();
 		if (isSolved() && mainController.isLogged()) {
 			long finalTime = System.currentTimeMillis() - startTime;
 			int finalMiliSecond = (int)finalTime;
 			int score = (300000-finalMiliSecond)/100;
-			scoreService.addScore(new Score(mainController.getLoggedPlayer().getName(), "guess", score));
+			scoreService.addScore(new Score(mainController.getLoggedPlayer().getName(), "guess", score, date));
 		}
 		return "guess";
 	}

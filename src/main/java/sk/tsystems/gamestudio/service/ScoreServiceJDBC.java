@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -38,10 +40,11 @@ public class ScoreServiceJDBC implements ScoreService {
 		try (Connection connection = DriverManager.getConnection(URL, LOGIN, PASSWORD);
 				PreparedStatement ps = connection.prepareStatement(SELECT)) {
 			ps.setString(1, game);
+			Date date = Calendar.getInstance().getTime();
 			try (ResultSet rs = ps.executeQuery()){
 				List<Score> scores = new ArrayList<Score>();
 				while (rs.next()) {
-					Score score = new Score(rs.getString(1), rs.getString(2), rs.getInt(3));
+					Score score = new Score(rs.getString(1), rs.getString(2), rs.getInt(3), date);
 					scores.add(score);
 				}
 				return scores;

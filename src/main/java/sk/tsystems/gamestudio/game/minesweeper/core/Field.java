@@ -162,15 +162,11 @@ public class Field {
 	}
 
 	public boolean isLose() {
-		if (state == GameState.FAILED)
-			return true;
-		return false;
+		return state == GameState.FAILED;
 	}
 
 	public boolean isWin() {
-		if ((rowCount * columnCount) - getNumberOf(State.OPEN) == mineCount)
-			return true;
-		return false;
+		return (rowCount * columnCount) - getNumberOf(State.OPEN) == mineCount && state != GameState.FAILED;
 	}
 
 	public int getNumberOf(Tile.State state) {// kolko je akych dlazdic

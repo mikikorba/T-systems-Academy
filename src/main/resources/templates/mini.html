@@ -44,7 +44,7 @@
 						
 						<!-- <div th:utext="${@miniController.htmlField}" /> -->
 
-						<div th:if="${not @miniController.solved}">
+						<!-- <div th:if="${not @miniController.solved}"> -->
 							<div th:if="${@miniController.win}">
 								<h3>YOU WIN MINESWEEPERS</h3>
 								<img class="Boy" src='/images/vault-boy.png'>
@@ -53,7 +53,7 @@
 								<h3>YOU LOSE MINESWEEPERS</h3>
 								<img class="Boy" src='/images/vault-boy2.png'>
 							</div>
-						</div>
+						<!-- </div> -->
 						
 						<div th:if="${@miniController.solved}">
 						<div th:utext="${@miniController.htmlField}" />

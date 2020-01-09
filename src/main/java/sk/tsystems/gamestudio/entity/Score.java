@@ -1,5 +1,8 @@
 package sk.tsystems.gamestudio.entity;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,16 +15,18 @@ public class Score {
 	private String username;
 	private String game;
 	private int value;
+	private Date date;
 	
 	public Score() {
 	}
 	
-	public Score(String username, String game, int value) {
+	public Score(String username, String game, int value, Date date) {
 		this.username = username;
 		this.game = game;
 		this.value = value;
+		this.date = date;
 	}
-	
+
 	public int getIdent() {
 		return ident;
 	}
@@ -52,6 +57,14 @@ public class Score {
 	@Override
 	public String toString() {
 		return "Score [ident=" + ident + ", username=" + username + ", game=" + game + ", value=" + value + "]";
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	
 }

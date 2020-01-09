@@ -12,51 +12,47 @@ import sk.tsystems.gamestudio.service.RegisterService;
 @Controller
 @Scope(WebApplicationContext.SCOPE_SESSION)
 public class MainController {
-	
+
 	private Player loggedPlayer;
-	
+
 	@Autowired
 	private RegisterService registerService;
-	
+
 	@RequestMapping("/login")
 	public String login(Player player) {
 		Player one = registerService.getRegister(player.getName());
-		if (one==null)
+		if (one == null)
 			return "redirect:/";
-		if (one.getName()
-				.equals(player.getName()) 
-			&& 
-			one.getPass()
-				.equals(player.getPass())) {
-			loggedPlayer = player;	
+		if (one.getName().equals(player.getName()) && one.getPass().equals(player.getPass())) {
+			loggedPlayer = player;
 		}
-		
+
 //		Player one = registerService.getRegister(player.getName());
 //		if ("heslo".equals(player.getPass())) {
 //			loggedPlayer = player;			
 //		}
-		
+
 		return "redirect:/";
 	}
-	
+
 	@RequestMapping("/logout")
 	public String logout() {
-			loggedPlayer = null;			
+		loggedPlayer = null;
 		return "redirect:/";
 	}
-	
+
 	public boolean isLogged() {
 		return loggedPlayer != null;
 	}
-	
+
 	public Player getLoggedPlayer() {
 		return loggedPlayer;
 	}
-	
+
 	@RequestMapping("/register")
 	public String register(Player player) {
 		registerService.addPlayer(player);
 		return "redirect:/";
 	}
-	
+
 }

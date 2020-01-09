@@ -1,5 +1,7 @@
 package sk.tsystems.gamestudio.controller;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Formatter;
 import java.util.List;
 
@@ -48,11 +50,12 @@ public class HangManController {
 	@RequestMapping("/hangman/guess")
 	public String getNewNumber(String input) {
 		this.input = input;
+		Date date = Calendar.getInstance().getTime();
 		if (objectWeb.isSolved() && mainController.isLogged()) {
 			long finalTime = System.currentTimeMillis() - startTime;
 			int finalMiliSecond = (int)finalTime;
 			int score = (300000-finalMiliSecond)/100;
-			scoreService.addScore(new Score(mainController.getLoggedPlayer().getName(), "hangman", score));
+			scoreService.addScore(new Score(mainController.getLoggedPlayer().getName(), "hangman", score, date));
 		}
 		return "hangman";
 	}

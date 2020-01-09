@@ -1,5 +1,7 @@
 package sk.tsystems.gamestudio.controller;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Formatter;
 import java.util.List;
 
@@ -31,22 +33,22 @@ public class MiniController {
 	public boolean isMarking() {
 		return marking;
 	}
-	
+
 	@Autowired
 	private ScoreService scoreService;
-	
+
 	@Autowired
 	private CommentService commentService;
 
 	@Autowired
 	private MainController mainController;
-	
+
 	@Autowired
 	private RatingService ratingService;
 
 	@RequestMapping("/mini")
 	public String index() {
-		field = new Field(10, 10, 5);
+		field = new Field(9, 9, 3);
 		startTime = System.currentTimeMillis();
 		return "mini";
 	}
@@ -62,13 +64,13 @@ public class MiniController {
 
 		}
 		if (isWin() && mainController.isLogged()) {
+			Date date = Calendar.getInstance().getTime();
 			long finalTime = System.currentTimeMillis() - startTime;
-			int finalMiliSecond = (int)finalTime;
-			int score = (300000-finalMiliSecond)/100;
-			scoreService.addScore(new Score(mainController.getLoggedPlayer().getName(), "mini", score));
+			int finalMiliSecond = (int) finalTime;
+			int score = (300000 - finalMiliSecond) / 100;
+			scoreService.addScore(new Score(mainController.getLoggedPlayer().getName(), "mini", score, date));
+		} else if (isLose() && mainController.isLogged()) {
 		}
-		else if (isLose() && mainController.isLogged()) {
-			}
 		return "mini";
 	}
 
@@ -77,7 +79,7 @@ public class MiniController {
 		marking = !marking;
 		return "mini";
 	}
-	
+
 	@RequestMapping("/mini/comment")
 	public String comment(String content) {
 		try {
@@ -86,6 +88,7 @@ public class MiniController {
 		}
 		return "mini";
 	}
+
 	@RequestMapping("/mini/rating")
 	public String setRating(int rating) {
 		try {
@@ -106,8 +109,8 @@ public class MiniController {
 				f.format("<td>\n");
 				Tile tile = field.getTile(row, column);
 
-					f.format("<a href='/mini/openTile?row=%d&column=%d'>", row, column);
-					f.format("<img src='/images/mini/%s.png'></a>", getImageName(tile));
+				f.format("<a href='/mini/openTile?row=%d&column=%d'>", row, column);
+				f.format("<img src='/images/mini/%s.png'></a>", getImageName(tile));
 
 				f.format("</td>\n");
 			}
@@ -136,20 +139,24 @@ public class MiniController {
 	public boolean isSolved() {
 		return field.isSolved();
 	}
+
 	public boolean isLose() {
 		return field.isLose();
 	}
+
 	public boolean isWin() {
 		return field.isWin();
 	}
-	
-	public List<Score> getScores(){
+
+	public List<Score> getScores() {
 		return scoreService.getTopScores("mini", 10);
 	}
-	public List<Score> getScoresMain(){
+
+	public List<Score> getScoresMain() {
 		return scoreService.getTopScores("mini", 1);
 	}
-	public List<Comment> getComment(){
+
+	public List<Comment> getComment() {
 		return commentService.getComment("mini");
 	}
 }
